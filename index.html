@@ -30,74 +30,62 @@
 </head>
 <body>
     <div class="container">
-    <h1>Flashcard App</h1>
-    <p>Choose an option:</p>
-    
-    <!-- Create Set 1 -->
-    <button onclick="showCreateSection('set1')">Create Set 1</button>
+        <h1>Flashcard App</h1>
+        <p>Choose an option:</p>
+        
+        <!-- Create Set 1 -->
+        <button onclick="showCreateSection('set1')">Create Set 1</button>
 
-    <!-- Create Set 2 -->
-    <button onclick="showCreateSection('set2')">Create Set 2</button>
+        <!-- Create Set 2 -->
+        <button onclick="showCreateSection('set2')">Create Set 2</button>
 
-    <!-- Create Set 3 -->
-    <button onclick="showCreateSection('set3')">Create Set 3</button>
+        <!-- Create Set 3 -->
+        <button onclick="showCreateSection('set3')">Create Set 3</button>
 
-    <!-- Create Section -->
-    <div class="create-section" id="createSection">
-        <form id="createForm">
-            <label for="flashcardSetTitle">Flashcard Set Title:</label>
-            <input type="text" id="flashcardSetTitle" name="flashcardSetTitle" required>
-            <br>
-            <label for="flashcardSetDescription">Flashcard Set Description:</label>
-            <textarea id="flashcardSetDescription" name="flashcardSetDescription" rows="4" required></textarea>
-            <br>
-            <button type="button" onclick="createFlashcardSet()">Create Flashcard Set</button>
-        </form>
+        <!-- Create Section -->
+        <div class="create-section" id="createSection">
+            <form id="createForm">
+                <label for="flashcardSetTitle">Flashcard Set Title:</label>
+                <input type="text" id="flashcardSetTitle" name="flashcardSetTitle" required>
+                <br>
+                <label for="flashcardSetDescription">Flashcard Set Description:</label>
+                <textarea id="flashcardSetDescription" name="flashcardSetDescription" rows="4" required></textarea>
+                <br>
+                <button type="button" onclick="createFlashcardSet()">Create Flashcard Set</button>
+            </form>
+        </div>
     </div>
-</div>
 
-<script>
-    function showCreateSection(setNumber) {
-        var createSection = document.getElementById("createSection");
-        createSection.style.display = "block";
-        document.getElementById("createForm").reset(); // Reset the form
-        document.getElementById("flashcardSetTitle").placeholder = "Set " + setNumber + " Title";
-        document.getElementById("flashcardSetDescription").placeholder = "Set " + setNumber + " Description";
-    }
-
-    function createFlashcardSet() {
-        // Get the title and description entered by the user
-        var title = document.getElementById("flashcardSetTitle").value;
-        var description = document.getElementById("flashcardSetDescription").value;
-
-        // Check if title and description are not empty
-        if (title.trim() !== "" && description.trim() !== "") {
-            // Redirect based on set number
-            if (title.toLowerCase().includes("set 1")) {
-                saveAndRedirect("catquiz2://#!section=61416495", title, description, "flashcards_set1");
-            } else if (title.toLowerCase().includes("set 2")) {
-                saveAndRedirect("catquiz2://#!section=61416496", title, description, "flashcards_set2");
-            } else if (title.toLowerCase().includes("set 3")) {
-                saveAndRedirect("catquiz2://#!section=61416497", title, description, "flashcards_set3");
-            } else {
-                alert("Invalid set title. Please include 'Set 1', 'Set 2', or 'Set 3' in the title.");
-            }
-        } else {
-            alert("Please enter both title and description.");
+    <script>
+        function showCreateSection(setNumber) {
+            var createSection = document.getElementById("createSection");
+            createSection.style.display = "block";
+            document.getElementById("createForm").reset(); // Reset the form
+            document.getElementById("flashcardSetTitle").placeholder = "Set " + setNumber + " Title";
+            document.getElementById("flashcardSetDescription").placeholder = "Set " + setNumber + " Description";
         }
-    }
 
-    // Function to get the current page name
-    function saveAndRedirect(page, title, description, storageKey) {
-        // Save to local storage
-        const flashcards = JSON.parse(localStorage.getItem(storageKey)) || [];
-        flashcards.push({ title, description });
-        localStorage.setItem(storageKey, JSON.stringify(flashcards));
+        function createFlashcardSet() {
+            // Get the title and description entered by the user
+            var title = document.getElementById("flashcardSetTitle").value;
+            var description = document.getElementById("flashcardSetDescription").value;
 
-        // Redirect
-        window.location.href = page;
-    }
-</script>
-
+            // Check if title and description are not empty
+            if (title.trim() !== "" && description.trim() !== "") {
+                // Redirect based on set number
+                if (title.toLowerCase().includes("set 1")) {
+                    window.location.href = "/new-page.html";
+                } else if (title.toLowerCase().includes("set 2")) {
+                    window.location.href = "/next-page.html";
+                } else if (title.toLowerCase().includes("set 3")) {
+                    window.location.href = "/nextue-page.html";
+                } else {
+                    alert("Invalid set title. Please include 'Set 1', 'Set 2', or 'Set 3' in the title.");
+                }
+            } else {
+                alert("Please enter both title and description.");
+            }
+        }
+    </script>
 </body>
 </html>
