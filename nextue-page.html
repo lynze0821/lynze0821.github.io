@@ -17,59 +17,67 @@
    @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;1,200;1,300&display=swap');
 
    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      outline: 0;
-   }
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        outline: 0;
+    }
+    
+    body {
+        font-family: 'Montserrat', sans-serif;
+        color: #E05D5D;
+        background-color: #fff8e5;
+        min-height: 100vh;
+        background-size: cover;
+        background-position: center;
+        background-repeat: repeat;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-bottom: 30px;
+    }
+    
+    .container {
+        display: cover;
+        flex-direction: column;
+        align-items: center;
+        width: 95%;
+       
+    }
+    
+    .header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 40px;
+        background-image: url('https://github.com/lynze0821/lynze0821.github.io/blob/main/Untitled%20design%20(22).png?raw=true');
+        background-size: cover;
+         border-radius: 15px;
+        background-position: center;
+        background-repeat: no-repeat;
+        height: 300px; /* Set the height as needed */
+    }
+    
+    .header h1 {
+        text-transform: uppercase;
+        font-size: 30px;
+        margin-bottom: 15px;
+        font-weight: bold; /* Added to make the text bold */
+        text-align: center; /* Added to center-align the text */
+    }
+    
+    .header button {
+        width: 80%;
+        padding: 10px;
+        background-color: #fff; /* Changed background color to white */
+        border: none;
+        font-size: 15px;
+        border-radius: 15px;
+        box-shadow: 0 4px 2px rgba(0, 0, 0, .2);
+        cursor: pointer;
+    }
 
-   body {
-      font-family: 'Montserrat', sans-serif;
-      color: #E05D5D;
-      min-height: 100vh;
-      background: url('https://github.com/lynze0821/FlashcardsApp/blob/main/Untitled%20design%20(21).png?raw=true') no-repeat center center fixed;
-      background-size: cover;
-      background-position: center;
-      background-repeat: repeat;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding-bottom: 30px;
-   }
-
-   .container {
-      margin-top: 50px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      width: 100%;
-   }
-
-   .header {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 40px;
-   }
-
-   .header h1 {
-      text-transform: uppercase;
-      font-size: 30px;
-      margin-bottom: 15px;
-      margin-right: 1px; /* Added margin to move header slightly to the right */
-   }
-
-   .header button {
-      width: 100%;
-      padding: 10px;
-      background-color: #fff; /* Changed background color to white */
-      border: none;
-      font-size: 15px;
-      border-radius: 15px;
-      box-shadow: 0 4px 2px rgba(0, 0, 0, .2);
-      cursor: pointer;
-   }
 
    .feedback {
       background: #fff;
@@ -85,6 +93,7 @@
 
    .modal {
       margin-bottom: 40px;
+      margin: 0 auto;
       padding: 12px;
       display: none;
       flex-direction: column;
@@ -102,6 +111,7 @@
       right: 15px;
       font-size: 25px;
       cursor: pointer;
+      transform: translateX(50%);
    }
 
    .modal .control-form {
