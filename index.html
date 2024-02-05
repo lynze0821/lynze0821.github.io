@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flashcard App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+            background: url('https://scontent.fcrk1-4.fna.fbcdn.net/v/t1.15752-9/413215621_1044619843263342_8000255277576916483_n.png?_nc_cat=111&ccb=1-7&_nc_sid=8cd0a2&_nc_eui2=AeEvEkbl6ApKpK9gJduH3nr9dHwIT2C0VQp0fAhPYLRVCuSqo17RzH8CNZLdGBgISI-3os7m01QvaB7huSwRz3Vt&_nc_ohc=dqfydCprw9UAX_sNm-R&_nc_ht=scontent.fcrk1-4.fna&oh=03_AdQjLsOBy3-FL5SO9wKKT2Ue0sYrq8hRDEXXspiKEJYi5g&oe=65E070B5') no-repeat center center fixed;
+            background-size: cover;
+        }
+        .container {
+            width: 100%;
+            padding: 10px;
+            background-color: #fff;
+            border: none;
+            font-size: 15px;
+            border-radius: 15px;
+            box-shadow: 0 4px 2px rgba(0, 0, 0, .2);
+            cursor: pointer;
+        }
+        .create-section {
+            display: none;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+    <h1>Flashcard App</h1>
+    <p>Choose an option:</p>
+    
+    <!-- Create Set 1 -->
+    <button onclick="showCreateSection('set1')">Create Set 1</button>
+
+    <!-- Create Set 2 -->
+    <button onclick="showCreateSection('set2')">Create Set 2</button>
+
+    <!-- Create Set 3 -->
+    <button onclick="showCreateSection('set3')">Create Set 3</button>
+
+    <!-- Create Section -->
+    <div class="create-section" id="createSection">
+        <form id="createForm">
+            <label for="flashcardSetTitle">Flashcard Set Title:</label>
+            <input type="text" id="flashcardSetTitle" name="flashcardSetTitle" required>
+            <br>
+            <label for="flashcardSetDescription">Flashcard Set Description:</label>
+            <textarea id="flashcardSetDescription" name="flashcardSetDescription" rows="4" required></textarea>
+            <br>
+            <button type="button" onclick="createFlashcardSet()">Create Flashcard Set</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    function showCreateSection(setNumber) {
+        var createSection = document.getElementById("createSection");
+        createSection.style.display = "block";
+        document.getElementById("createForm").reset(); // Reset the form
+        document.getElementById("flashcardSetTitle").placeholder = "Set " + setNumber + " Title";
+        document.getElementById("flashcardSetDescription").placeholder = "Set " + setNumber + " Description";
+    }
+
+    function createFlashcardSet() {
+        // Get the title and description entered by the user
+        var title = document.getElementById("flashcardSetTitle").value;
+        var description = document.getElementById("flashcardSetDescription").value;
+
+        // Check if title and description are not empty
+        if (title.trim() !== "" && description.trim() !== "") {
+            // Redirect based on set number
+            if (title.toLowerCase().includes("set 1")) {
+                saveAndRedirect("catquiz2://#!section=61416495", title, description, "flashcards_set1");
+            } else if (title.toLowerCase().includes("set 2")) {
+                saveAndRedirect("catquiz2://#!section=61416496", title, description, "flashcards_set2");
+            } else if (title.toLowerCase().includes("set 3")) {
+                saveAndRedirect("catquiz2://#!section=61416497", title, description, "flashcards_set3");
+            } else {
+                alert("Invalid set title. Please include 'Set 1', 'Set 2', or 'Set 3' in the title.");
+            }
+        } else {
+            alert("Please enter both title and description.");
+        }
+    }
+
+    // Function to get the current page name
+    function saveAndRedirect(page, title, description, storageKey) {
+        // Save to local storage
+        const flashcards = JSON.parse(localStorage.getItem(storageKey)) || [];
+        flashcards.push({ title, description });
+        localStorage.setItem(storageKey, JSON.stringify(flashcards));
+
+        // Redirect
+        window.location.href = page;
+    }
+</script>
+
+</body>
+</html>
